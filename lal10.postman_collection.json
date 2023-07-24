@@ -1,0 +1,262 @@
+{
+	"info": {
+		"_postman_id": "ae6c2854-5e50-4f86-bc9c-777f10a4e990",
+		"name": "lal10",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24999087",
+		"_collection_link": "https://planetary-flare-240934.postman.co/workspace/chat.io~9c53166b-8473-4040-9d12-f617fe5bc115/collection/24999087-ae6c2854-5e50-4f86-bc9c-777f10a4e990?action=share&creator=24999087&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "user info",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "szI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjYsImZpcnN0X25hbWUiOiJ0ZXN0ZiIsImxhc3RfbmFtZSI6InRlc3RsIiwidXNlcm5hbWUiOiJ0ZXN0IiwiZW1haWwiOiJ0ZXN0QHRlc3QuYyIsImNyZWF0ZWRBdCI6IjIwMjMtMDctMjRUMTA6NTc6MjIuNzg2WiIsImlhdCI6MTY5MDE5NjI0MywiZXhwIjoxNjkwODAxMDQzfQ.3uEAodYKOnPJqoRLwi8m95a5hLNl1rJvuKe49rHBzG8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/user",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "example",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/user",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"user"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Success\",\n    \"message\": \"User fetched successfully\",\n    \"data\": {\n        \"user\": {\n            \"id\": 26,\n            \"first_name\": \"testf\",\n            \"last_name\": \"testl\",\n            \"username\": \"test\",\n            \"email\": \"test@test.c\",\n            \"createdAt\": \"2023-07-24T10:57:22.000Z\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "user login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"test@test.com\",\n    \"password\":\"1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/user/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "example",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/user",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"user"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Success\",\n    \"message\": \"User fetched successfully\",\n    \"data\": {\n        \"user\": {\n            \"id\": 26,\n            \"first_name\": \"testf\",\n            \"last_name\": \"testl\",\n            \"username\": \"test\",\n            \"email\": \"test@test.c\",\n            \"createdAt\": \"2023-07-24T10:57:22.000Z\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "user signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\":\"tes2t\",\n    \"first_name\":\"testf2\",\n    \"last_name\":\"testl2\",\n    \"email\":\"test@test.com\",\n    \"password\":\"1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/user/signup",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user",
+								"signup"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "example",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\":\"test\",\n    \"first_name\":\"testf\",\n    \"last_name\":\"testl\",\n    \"email\":\"test@test.c\",\n    \"password\":\"1234\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/user/signup",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"user",
+										"signup"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Success\",\n    \"message\": \"User created successfully\",\n    \"data\": {\n        \"user\": {\n            \"id\": 26,\n            \"first_name\": \"testf\",\n            \"last_name\": \"testl\",\n            \"username\": \"test\",\n            \"email\": \"test@test.c\",\n            \"createdAt\": \"2023-07-24T10:57:22.786Z\"\n        },\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjYsImZpcnN0X25hbWUiOiJ0ZXN0ZiIsImxhc3RfbmFtZSI6InRlc3RsIiwidXNlcm5hbWUiOiJ0ZXN0IiwiZW1haWwiOiJ0ZXN0QHRlc3QuYyIsImNyZWF0ZWRBdCI6IjIwMjMtMDctMjRUMTA6NTc6MjIuNzg2WiIsImlhdCI6MTY5MDE5NjI0MywiZXhwIjoxNjkwODAxMDQzfQ.3uEAodYKOnPJqoRLwi8m95a5hLNl1rJvuKe49rHBzG8\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "server status",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"Success\",\n    \"message\": \"Server is working\",\n    \"stage\": \"dev\",\n    \"version\": \"1.0.0\"\n}"
+				}
+			]
+		}
+	]
+}

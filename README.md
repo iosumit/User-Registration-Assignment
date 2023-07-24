@@ -1,5 +1,5 @@
 # Lal10 Registration
-This project is based on MVC archietecture 
+This project is based on MVC archietecture.
 This project uses RDBMS (MySQL).
 
 -------------
@@ -16,8 +16,10 @@ root
     |--- Utils 
     |--- Model 
 ````
+---
+
 ### Enviroment
-create file .env on root level
+create file `.env` on root level
 ```
 ENVIROMENT_TYPE=<ENY Type `dev | prod | staging `>
 
@@ -31,3 +33,26 @@ MYSQL_PASSWORD=<Database port>
 JWT_AUTH_TOKEN_SECRET=<jwt secret>
 PORT=<Server running Port>
 ````
+
+---
+
+### User Registration Postman collection
+
+`lal10.postman_collection.json`
+
+import this file to postman and test it
+
+---
+
+### Install Required Dependencies
+```
+npm i
+```
+### Run
+```
+npm start
+```
+### Test
+```
+npm test
+```
