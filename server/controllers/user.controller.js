@@ -1,5 +1,6 @@
 const userHandler = require('../handlers/user.handler')
 const { strings } = require('../utils/strings')
+const Joi = require('joi')
 
 const getUserInfo = (req, res, next) => {
     const input = {
@@ -19,19 +20,19 @@ const getUserInfo = (req, res, next) => {
 }
 
 const userLogin = (req, res, next) => {
-    if (!req.body.password) {
-        return res.status(502).json({ status: strings.error, message: strings.unauthorized_access })
+    const schema = Joi.object({
+        password: Joi.string().min(4).required(),
+        email: Joi.string().email().required(),
+    })
+
+    const result = schema.validate(req.body)
+    if (result.error) {
+        return res.status(502).json({ status: strings.error, message: result.error.details[0].message })
     }
-    if (!req.body.username && !req.body.email) {
-        return res.status(502).json({ status: strings.error, message: strings.unauthorized_access })
-    }
+
     const input = {
         password: req.body.password,
-    }
-    if (req.body.username) {
-        input.username = req.body.username;
-    } else {
-        input.email = req.body.email;
+        email: req.body.email,
     }
 
     userHandler.userLogin(input, (err, result) => {
@@ -47,6 +48,19 @@ const userLogin = (req, res, next) => {
 }
 
 const userSignup = (req, res, next) => {
+    const schema = Joi.object({
+        username: Joi.string().min(3).required(),
+        password: Joi.string().min(4).required(),
+        email: Joi.string().email().required(),
+        first_name: Joi.string().alphanum().min(3).required(),
+        last_name: Joi.string().alphanum().min(3).required(),
+    })
+
+    const result = schema.validate(req.body)
+    if (result.error) {
+        return res.status(502).json({ status: strings.error, message: result.error.details[0].message })
+    }
+
     const input = {
         username: req.body.username,
         password: req.body.password,

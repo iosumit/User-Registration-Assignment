@@ -99,7 +99,7 @@ const userLogin = (input, next) => {
             User.findAll({
                 attributes: ['username', 'email', 'createdAt', 'id', 'last_name', 'first_name'],
                 where: {
-                    [Op.or]: input
+                    [Op.and]: input
                 }
             }).then(res => {
                 if (res.length == 0)
