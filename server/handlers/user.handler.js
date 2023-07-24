@@ -112,6 +112,7 @@ const userLogin = (input, next) => {
                     email: res[0].email,
                     createdAt: res[0].createdAt,
                 };
+                modelName.token = authorization.createToken(modelName.user)
                 return cb();
             }).catch(err => {
                 cb(err)

@@ -39,7 +39,7 @@ const userLogin = (req, res, next) => {
         if (err) {
             return res.status(502).json({ status: strings.error, message: err })
         }
-        return res.status(201).json({
+        return res.status(200).json({
             status: strings.success,
             message: strings.user_logged_in_successfully,
             data: result
