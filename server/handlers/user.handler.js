@@ -92,7 +92,43 @@ const userInfo = (input, next) => {
     })
 }
 
+const userLogin = (input, next) => {
+    const modelName = {};
+    async.series([
+        cb => {
+            User.findAll({
+                attributes: ['username', 'email', 'createdAt', 'id', 'last_name', 'first_name'],
+                where: {
+                    [Op.or]: input
+                }
+            }).then(res => {
+                if (res.length == 0)
+                    return cb(strings.unauthorized_access)
+                modelName.user = {
+                    id: res[0].id,
+                    first_name: res[0].first_name,
+                    last_name: res[0].last_name,
+                    username: res[0].username,
+                    email: res[0].email,
+                    createdAt: res[0].createdAt,
+                };
+                return cb();
+            }).catch(err => {
+                cb(err)
+            });
+        },
+    ], err => {
+        if (err) {
+            next(err)
+        } else {
+            next(null, modelName)
+        }
+    })
+}
+
+
 module.exports = {
     userSignup,
-    userInfo
+    userInfo,
+    userLogin
 }

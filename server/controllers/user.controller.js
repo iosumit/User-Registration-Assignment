@@ -18,6 +18,34 @@ const getUserInfo = (req, res, next) => {
     })
 }
 
+const userLogin = (req, res, next) => {
+    if (!req.body.password) {
+        return res.status(502).json({ status: strings.error, message: strings.unauthorized_access })
+    }
+    if (!req.body.username && !req.body.email) {
+        return res.status(502).json({ status: strings.error, message: strings.unauthorized_access })
+    }
+    const input = {
+        password: req.body.password,
+    }
+    if (req.body.username) {
+        input.username = req.body.username;
+    } else {
+        input.email = req.body.email;
+    }
+
+    userHandler.userLogin(input, (err, result) => {
+        if (err) {
+            return res.status(502).json({ status: strings.error, message: err })
+        }
+        return res.status(201).json({
+            status: strings.success,
+            message: strings.user_logged_in_successfully,
+            data: result
+        })
+    })
+}
+
 const userSignup = (req, res, next) => {
     const input = {
         username: req.body.username,
@@ -39,4 +67,4 @@ const userSignup = (req, res, next) => {
     })
 }
 
-module.exports = { getUserInfo, userSignup }
+module.exports = { getUserInfo, userSignup, userLogin }

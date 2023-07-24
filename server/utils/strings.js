@@ -6,6 +6,7 @@ const strings = {
     user_not_found: "User not found",
     user_created_successfully: "User created successfully",
     user_fetched_successfully: "User fetched successfully",
+    user_logged_in_successfully: "User logged in successfully",
     unable_to_create_user: 'Unable to create user',
     user_exits_already: 'Users already exits',
     unauthorized_access: 'Unauthorized access'
