@@ -7,14 +7,14 @@ function verifyApiAuth(req, res, next) {
     let model = {};
     async.series([
         cb => {
-            if (!req.headers) return cb(strings.unauthorization_access)
+            if (!req.headers) return cb(strings.unauthorized_access)
             let token = req.headers.authorization;
-            if (!token) return cb(strings.unauthorization_access)
+            if (!token) return cb(strings.unauthorized_access)
 
             token = token.split(' ');
-            if (token.length != 2) return cb(strings.unauthorization_access)
+            if (token.length != 2) return cb(strings.unauthorized_access)
             verifyToken(token[1], (err, res) => {
-                if (err) return cb(strings.unauthorization_access)
+                if (err) return cb(strings.unauthorized_access)
                 model.user = res
                 return cb()
             })
@@ -22,6 +22,7 @@ function verifyApiAuth(req, res, next) {
     ], err => {
         if (err) {
             return res.status(403).json({
+                status: strings.error,
                 message: err
             })
         } else {

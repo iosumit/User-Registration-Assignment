@@ -2,7 +2,20 @@ const userHandler = require('../handlers/user.handler')
 const { strings } = require('../utils/strings')
 
 const getUserInfo = (req, res, next) => {
-    return res.status(200).json({ status: "Success", message: "User fetched" })
+    const input = {
+        username: req.user.username,
+        email: req.user.email,
+    }
+    userHandler.userInfo(input, (err, result) => {
+        if (err) {
+            return res.status(502).json({ status: strings.error, message: err })
+        }
+        return res.status(201).json({
+            status: strings.success,
+            message: strings.user_fetched_successfully,
+            data: result
+        })
+    })
 }
 
 const userSignup = (req, res, next) => {
