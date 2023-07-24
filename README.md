@@ -7,16 +7,21 @@ This project uses RDBMS (MySQL).
 ```
 root
 |
-|--- Controller
-|--- Handler
-|--- Routes
-|--- Utils 
-|--- Model 
+|--test
+|--server
+    |
+    |--- Controller
+    |--- Handler
+    |--- Routes
+    |--- Utils 
+    |--- Model 
 ````
 ### Enviroment
+create file .env on root level
 ```
 ENVIROMENT_TYPE=<ENY Type `dev | prod | staging `>
 
+DATABSE_TYPE=</* one of 'mysql' | 'postgres' | 'sqlite' | 'mariadb' | 'mssql' | 'db2' | 'snowflake' | 'oracle' */>
 MYSQL_URI=<MySQL server url>
 MYSQL_DATABASE_NAME=<MySQL Database name>
 MYSQL_USERNAME=<Database username>

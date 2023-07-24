@@ -4,12 +4,22 @@ const morgan = require('morgan');
 require('dotenv').config();
 const { strings } = require('./utils/strings');
 
-require('./init').run();
+const db = require('./models');
 
 const app = express()
 
 const userRoutes = require('./routes/user.route');
-const mainRoutes = require('./routes/main.route')
+const mainRoutes = require('./routes/main.route');
+
+db.sequelize.sync().then(res => {
+    console.log('DB synced successfully!');
+
+}).catch(err => {
+    console.log('DB sync error!', err);
+})
+
+
+
 
 
 app.use(cors('*'))
