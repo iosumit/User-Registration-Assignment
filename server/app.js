@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
+const bodyParser = require('body-parser');
 require('dotenv').config();
 const { strings } = require('./utils/strings');
 
@@ -13,16 +14,13 @@ const mainRoutes = require('./routes/main.route');
 
 db.sequelize.sync().then(res => {
     console.log('DB synced successfully!');
-
 }).catch(err => {
     console.log('DB sync error!', err);
 })
 
-
-
-
-
 app.use(cors('*'))
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 app.use(morgan('dev'))
 
 app.use('/', mainRoutes);

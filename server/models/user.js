@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         active: {
             type: DataTypes.STRING,
-            allowNull: false
+            defaultValue: true
         }
     })
     return User
