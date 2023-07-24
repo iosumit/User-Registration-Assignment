@@ -22,6 +22,7 @@ describe("/user", () => {
         }
     })
 
+    // ------------------Login Suite-------------//
     describe('/login', () => {
         it('should return error when password not found', async () => {
             const res = await request(server).post('/user/login')
@@ -58,6 +59,77 @@ describe("/user", () => {
                 })
 
             expect(res.statusCode).toBe(200)
+            expect(res.body.data).not.toBeNull()
+            expect(res.body.data).toHaveProperty('token')
+            expect(res.body.data).toHaveProperty('user')
+            expect(res.body.data.user).toHaveProperty('id')
+            expect(res.body.data.user.username).toBe(payload.username)
+        })
+    })
+
+
+    // ------------------Signup Suit-------------//
+    describe('/signup', () => {
+        it('should return error when password not found', async () => {
+            const res = await request(server).post('/user/signup')
+                .send({
+                    username: "testcase",
+                    first_name: "testcase",
+                    last_name: "testcase",
+                    email: "test@testcase.com"
+                })
+            expect(res.statusCode).toBe(502)
+            expect(res.body).toHaveProperty('message')
+        })
+
+        it('should return error when email not found', async () => {
+            const res = await request(server).post('/user/signup')
+                .send({
+                    username: "testcase",
+                    first_name: "testcase",
+                    last_name: "testcase",
+                    password: "1234"
+                })
+            expect(res.statusCode).toBe(502)
+            expect(res.body).toHaveProperty('message')
+        })
+        it('should return error when username not found', async () => {
+            const res = await request(server).post('/user/signup')
+                .send({
+                    first_name: "testcase",
+                    last_name: "testcase",
+                    email: "test@testcase.com",
+                    password: "1234"
+                })
+            expect(res.statusCode).toBe(502)
+            expect(res.body).toHaveProperty('message')
+        })
+        it('should return error when first_name not found', async () => {
+            const res = await request(server).post('/user/signup')
+                .send({
+                    username: "testcase",
+                    last_name: "testcase",
+                    email: "test@testcase.com",
+                    password: "1234"
+                })
+            expect(res.statusCode).toBe(502)
+            expect(res.body).toHaveProperty('message')
+        })
+
+        it('should return user detail with token on signup', async () => {
+
+            payload = {
+                username: "testcase",
+                first_name: "testcase",
+                last_name: "testcase",
+                email: "test@testcase.com",
+                password: "1234"
+            };
+
+            const res = await request(server).post('/user/signup')
+                .send(payload)
+
+            expect(res.statusCode).toBe(201)
             expect(res.body.data).not.toBeNull()
             expect(res.body.data).toHaveProperty('token')
             expect(res.body.data).toHaveProperty('user')

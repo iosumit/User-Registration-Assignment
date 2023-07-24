@@ -11,13 +11,6 @@ const sequelize = new Sequelize(Config.MYSQL_DATABASE_NAME, Config.MYSQL_USERNAM
 });
 
 
-// try {
-//     await sequelize.authenticate();
-//     console.log('Connection has been established successfully.');
-// } catch (error) {
-//     console.error('Unable to connect to the database:', error);
-// }
-
 fs.readdirSync(__dirname)
     .filter(file => {
         return (file != 'index.js' && file.indexOf('.' != 0) && file !== path.basename && file.slice(-3) === '.js');
