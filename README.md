@@ -1,4 +1,4 @@
-# Lal10 Registration
+# Assignment Registration
 This project is based on MVC archietecture.
 This project uses RDBMS (MySQL).
 
@@ -38,7 +38,7 @@ PORT=<Server running Port>
 
 ### User Registration Postman collection
 
-`lal10.postman_collection.json`
+`assignment.postman_collection.json`
 
 import this file to postman and test it
 
